@@ -14,3 +14,6 @@ jobs:
         run: date
       - name: Show Operating System
         run: uname -a
+      - name: Show my name 
+        run: echo hello Aditya
+

@@ -1,8 +1,8 @@
-name: Hello Github Actions
+name: GitHub Actions Demo
 
 on:
   workflow_dispatch:
-
+  push:
 
 jobs:
   hello:
@@ -10,10 +10,24 @@ jobs:
     steps:
       - name: Print message
         run: echo "Hello from GitHub Actions"
+
       - name: Show date
         run: date
+
       - name: Show Operating System
         run: uname -a
-      - name: Show my name 
-        run: echo hello Aditya
 
+      - name: Show my name
+        run: echo "hello Aditya"
+
+  secrets-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate DEMO_SECRET availability
+        run: |
+          if [ -n "${{ secrets.DEMO_SECRET }}" ]; then
+            echo "[PASS] DEMO_SECRET is available and automatically provided"
+          else
+            echo "[FAIL] DEMO_SECRET is NOT available"
+            exit 1
+          fi
